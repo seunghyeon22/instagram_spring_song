@@ -12,14 +12,15 @@ public class UserRepositoryImpl implements UserRepository{
 	
 	@Override
 	public int signup(User user) {
-		System.out.println("test");
 		return session.insert(NAME_SPACE+"signup",user);	
 	}
 	
 	@Override
 	public int checkUsername(String username) {
-		// TODO Auto-generated method stub
-		System.out.println("testes");
 		return session.selectOne(NAME_SPACE+"checkUsername",username);
+	}
+	@Override
+	public User getUsername(String username) {
+		return session.selectOne(NAME_SPACE+"getUsername", username);
 	}
 }

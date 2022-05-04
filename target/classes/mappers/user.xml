@@ -27,6 +27,21 @@
 		where
 		username = #{username};
 	</select>
+	<select id="getUsername" parameterType="String" resultType="com.instagram.song.domain.user.User">
+	select
+		usercode,
+		phone,
+		email,
+		name,
+		username,
+		password,
+		create_date,
+		update_date
+	from
+		user_mst
+	where
+		username =#{username}
+	</select>
 
 </mapper>
   
