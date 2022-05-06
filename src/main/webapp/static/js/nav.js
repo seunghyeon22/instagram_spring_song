@@ -4,15 +4,15 @@ const bLogo = document.querySelector(".b-logo");
 load();
 
 function load(){
-	profileImg.src = getProfileImg();
+	//profileImg.src = getProfileImg();
 }
 
 bLogo.onclick = () =>{
-	location.href ="/app/"
+	location.href ="/song/"
 }
  
 profileImg.onclick =() =>{
-	location.href ="/app/account/profile"
+	location.href ="/song/account/profile"
 }
 
 

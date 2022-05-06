@@ -36,15 +36,24 @@ public class AuthServiceImpl implements AuthService {
 		} else {
 			return false;
 		}
+		//return BCrypt.checkpw(password, user.getPassword());로 더 짧게 코딩가능하다.
 	}
 	@Override
 	public User signin(String username, String password) {	
 		User user = loadUsername(username);
 		if(user!=null) {
-			passwordCheck(password, user);
-			return null;
+			if(!passwordCheck(password, user)) {
+			return null;			
+			}
 		}
-
 		return user;
 	}
 }
+/*
+ * 아이디, 비밀번호
+ * 아이디 db조회
+ * User 객체
+ * 비밀번호만 가지고 와서 BCrypt로 암호 비교
+ */
+
+

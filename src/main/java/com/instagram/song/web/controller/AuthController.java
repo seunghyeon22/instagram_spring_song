@@ -1,6 +1,7 @@
 package com.instagram.song.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,21 +41,20 @@ public class AuthController {
 	public String usernameCheck(String username) {
 		return Boolean.toString(authService.checkUsername(username));
 	}
-	@ResponseBody
+
 	@RequestMapping(value = "/auth/signin", method = RequestMethod.POST)
 	public String signinSubmit(String username, String password, HttpServletRequest request) {
-		User user = authService.signin(username, password);
-		StringBuilder builder = new StringBuilder();
+		System.out.println(username);
+		System.out.println(password);
+		User user = authService.signin(username, password);	
 		if(user!=null) {
-			builder.append("<script>");
-			builder.append("alert(\"로그인 완료.\");");
-			builder.append("</script>");
+			HttpSession session = request.getSession();
+			session.setAttribute("principal", user);
+			System.out.println(user);
 		}else {
-			builder.append("<script>");
-			builder.append("alert(로그인 실패)");
-			builder.append("</script>");
+			return "redirect: /song/auth/signin";
 		}
-		return builder.toString();
+		return "redirect: /song/";
 	}
 	
 }
